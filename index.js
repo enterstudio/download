@@ -101,6 +101,9 @@ module.exports = (uri, output, opts) => {
 			.then(() => data);
 	});
 
+	agent.on('error', promise.catch.bind(promise))
+	stream.on('error', promise.catch.bind(promise))
+
 	stream.then = promise.then.bind(promise);
 	stream.catch = promise.catch.bind(promise);
 
